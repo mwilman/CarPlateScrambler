@@ -17,8 +17,11 @@ public class Extractor {
         this.PartialString = PartialString;
         
     }
-
-    boolean Check() {
+    private void Extract()
+    {
+        
+    }
+    public boolean Check() {
         if(PartialString.length() > 5)
         {
             throw new IllegalArgumentException("Der Teilstring ist über fünf Zeichen lang.");
