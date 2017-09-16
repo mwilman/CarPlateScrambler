@@ -15,6 +15,10 @@ public class Extractor {
     }
     public List<Possibility> Extract()
     {
+        if(!Check())
+        {
+            throw new IllegalArgumentException("Der Teilstring ist ungültig.");
+        }
         List<Possibility> ReturnList = new ArrayList<>();
         if(PartialString.length() >= 4)
         {
@@ -38,12 +42,7 @@ public class Extractor {
     
     
     public boolean Check() {
-        if(PartialString.length() > 5)
-        {
-            throw new IllegalArgumentException("Der Teilstring ist über fünf Zeichen lang.");
-        }
-        
-        return !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*") && !PartialString.contains("ä");
+        return !(PartialString.length() > 5)&& !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*") && !PartialString.contains("ä");
     }
     
     
