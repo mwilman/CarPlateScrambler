@@ -59,7 +59,7 @@ public class ExtractorTest {
         assertTrue(actual);
     }
     @Test
-    public void TestExtractorCheckPartialStringLengthIsOverFiveDigits_ThrowsIllegalArgumentException()
+    public void TestExtractorCheckPartialStringLengthIsOverFiveDigits_ReturnsFalse()
     {
         boolean actual;
         Extractor = new Extractor("IOASDIOASJDOIJASIODAOFHIOASDFHIOAHSFDIOHAIOFSDAIOFH");
