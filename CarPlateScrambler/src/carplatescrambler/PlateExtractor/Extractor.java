@@ -31,8 +31,8 @@ public class Extractor {
         } else if (PartialString.length() == 3)
         {
             ReturnList.add(CreatePossibility(PartialString.substring(0, 2),PartialString.substring(2,3),PartialString.substring(3,4)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 0),PartialString.substring(1,2),PartialString.substring(3)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 0),PartialString.substring(1,1),PartialString.substring(2)));
+            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
+            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
         } else if (PartialString.length() == 2)
         {
            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1),""));
