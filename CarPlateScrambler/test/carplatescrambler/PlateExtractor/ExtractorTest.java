@@ -18,27 +18,27 @@ public class ExtractorTest {
     public void TestExtractorCheckPartialStringContainsDigitsCheck()
     {
         Extractor = new Extractor("123");
+        Extractor.Extract();
     }
     @Test(expected = IllegalArgumentException.class)
     public void TestExtractorCheckPartialStringContainsOneChar()
     {
         Extractor = new Extractor("a");
+        Extractor.Extract();
     }
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void TestExtractorCheckPartialStringContainsÄCheck()
     {
         Extractor = new Extractor("häh?");
+        Extractor.Extract();
 
     }
-    @Test
-    public void TestExtractorCheckPartialStringIsVaild_ReturnsTrue()
-    {
-        Extractor = new Extractor("BIBER");
-    }
-    @Test
-    public void TestExtractorCheckPartialStringLengthIsOverFiveDigits_ReturnsFalse()
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void TestExtractorCheckPartialStringLengthIsOverFiveDigits()
     {
         Extractor = new Extractor("IOASDIOASJDOIJASIODAOFHIOASDFHIOAHSFDIOHAIOFSDAIOFH");
+        Extractor.Extract();
 
     }
     @Test
