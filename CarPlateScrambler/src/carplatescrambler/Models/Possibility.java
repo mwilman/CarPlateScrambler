@@ -1,5 +1,5 @@
 
-package carplatescrambler.PlateExtractor.Models;
+package carplatescrambler.Models;
 
 
 public class Possibility {

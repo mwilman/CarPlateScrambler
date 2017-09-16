@@ -1,6 +1,6 @@
 package carplatescrambler.PlateExtractor;
 
-import carplatescrambler.PlateExtractor.Models.Possibility;
+import carplatescrambler.Models.Possibility;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.Assert;

@@ -2,9 +2,9 @@ package carplatescrambler.PlateBuilder;
 
 import carplatescrambler.Dao.FileDao;
 import carplatescrambler.Dao.IFileDao;
-import carplatescrambler.PlateBuilder.Models.PlateSequence;
+import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateExtractor.Extractor;
-import carplatescrambler.PlateExtractor.Models.Possibility;
+import carplatescrambler.Models.Possibility;
 import java.util.ArrayList;
 import java.util.List;
 

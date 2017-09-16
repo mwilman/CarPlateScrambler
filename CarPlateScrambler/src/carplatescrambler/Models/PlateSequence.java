@@ -1,4 +1,4 @@
-package carplatescrambler.PlateBuilder.Models;
+package carplatescrambler.Models;
 
 import java.util.ArrayList;
 import java.util.List;
