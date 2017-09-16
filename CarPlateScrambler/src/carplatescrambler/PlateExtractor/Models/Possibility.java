@@ -29,7 +29,7 @@ public class Possibility {
     {
         return this.RestString;
     }
-    public void setRestStringt(String RestString)
+    public void setRestString(String RestString)
     {
         this.RestString = RestString;
     }
