@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package carplatescrambler.Dao;
 
-/**
- *
- * @author cyx
- */
+import java.util.List;
+
+
 public interface IFileDao {
-    public String getFileContent();
+    public List<String> getFileContent();
 }

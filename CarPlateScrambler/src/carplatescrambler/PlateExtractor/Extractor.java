@@ -10,7 +10,7 @@ public class Extractor {
 
     private final String PartialString;
 
-    Extractor(String PartialString) {
+    public Extractor(String PartialString) {
         this.PartialString = PartialString;
     }
     public List<Possibility> Extract()
@@ -41,7 +41,7 @@ public class Extractor {
     }
     
     
-    public boolean Check() {
+    private boolean Check() {
         return !(PartialString.length() > 5)&& !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*") && !PartialString.contains("ä");
     }
     

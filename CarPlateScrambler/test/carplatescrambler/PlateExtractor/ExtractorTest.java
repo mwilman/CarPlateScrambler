@@ -14,60 +14,32 @@ public class ExtractorTest {
     private Extractor Extractor;
     
 
-    @Test
-    public void TestExtractorCheckPartialStringContainsDigitsCheck_ReturnsFalse()
+    @Test(expected = IllegalArgumentException.class)
+    public void TestExtractorCheckPartialStringContainsDigitsCheck()
     {
-        boolean actual;
-        
         Extractor = new Extractor("123");
-        
-        
-        actual = Extractor.Check();
-        assertFalse(actual);
     }
-    @Test
-    public void TestExtractorCheckPartialStringContainsOneChar_ReturnsFalse()
+    @Test(expected = IllegalArgumentException.class)
+    public void TestExtractorCheckPartialStringContainsOneChar()
     {
-        boolean actual;
-        
         Extractor = new Extractor("a");
-        
-        
-        actual = Extractor.Check();
-        assertFalse(actual);
     }
     @Test
-    public void TestExtractorCheckPartialStringContainsÄCheck_ReturnsFalse()
+    public void TestExtractorCheckPartialStringContainsÄCheck()
     {
-        boolean actual;
-        
         Extractor = new Extractor("häh?");
-        
-        actual = Extractor.Check();
-        
-        assertFalse(actual);
+
     }
     @Test
     public void TestExtractorCheckPartialStringIsVaild_ReturnsTrue()
     {
-        boolean actual;
-        
         Extractor = new Extractor("BIBER");
-        
-        actual = Extractor.Check();
-        
-        assertTrue(actual);
     }
     @Test
     public void TestExtractorCheckPartialStringLengthIsOverFiveDigits_ReturnsFalse()
     {
-        boolean actual;
         Extractor = new Extractor("IOASDIOASJDOIJASIODAOFHIOASDFHIOAHSFDIOHAIOFSDAIOFH");
-        
-        actual = Extractor.Check();
-        
-        assertFalse(actual);
-        
+
     }
     @Test
     public void TestExtractorExtractBIBER_ReturnsListNotNull()

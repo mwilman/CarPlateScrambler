@@ -22,3 +22,5 @@
 hs_err_pid*
 /CarPlateScrambler/nbproject/private/
 /CarPlateScrambler/build/
+/CarPlateScrambler/dist/
+/.vs/
