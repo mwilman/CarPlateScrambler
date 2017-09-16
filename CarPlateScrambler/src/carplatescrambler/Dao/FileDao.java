@@ -20,13 +20,12 @@ import java.util.logging.Logger;
  * @author cyx
  */
 public class FileDao implements IFileDao {
+    @Override
     public String getFileContent()
     {
         try {
             return new String(Files.readAllBytes(Paths.get(getClass().getResource("kuerzelliste.txt").toURI())));
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(FileDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(FileDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
