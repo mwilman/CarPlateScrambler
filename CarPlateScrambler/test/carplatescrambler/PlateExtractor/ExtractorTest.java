@@ -123,6 +123,42 @@ public class ExtractorTest {
         assertEquals(expected, actual.get(0).getRestString());
         
     }
+    @Test
+    public void TestExtractorExtractAllBIBER_ReturnsList()
+    {
+        List<Possibility> expected = new ArrayList<>();
+        String StringToExtract = "BIBER";
+        
+        expected.add(CreatePossibility("BIB","ER", ""));
+        expected.add(CreatePossibility("BI","BE", "R"));
+        expected.add(CreatePossibility("BI","B", "ER"));
+        expected.add(CreatePossibility("B","IB", "ER"));
+        expected.add(CreatePossibility("B","I", "BER"));
+        
+        List<Possibility> actual;
+
+        Extractor = new Extractor(StringToExtract);
+        
+        actual = Extractor.Extract();
+        
+        assertEquals(expected.get(0).getLocationPart(), actual.get(0).getLocationPart());
+        assertEquals(expected.get(1).getLocationPart(), actual.get(1).getLocationPart());
+        assertEquals(expected.get(2).getLocationPart(), actual.get(2).getLocationPart());
+        assertEquals(expected.get(3).getLocationPart(), actual.get(3).getLocationPart());
+        assertEquals(expected.get(4).getLocationPart(), actual.get(4).getLocationPart());
+        
+        assertEquals(expected.get(0).getMidPart(), actual.get(0).getMidPart());
+        assertEquals(expected.get(1).getMidPart(), actual.get(1).getMidPart());
+        assertEquals(expected.get(2).getMidPart(), actual.get(2).getMidPart());
+        assertEquals(expected.get(3).getMidPart(), actual.get(3).getMidPart());
+        assertEquals(expected.get(4).getMidPart(), actual.get(4).getMidPart());
+        
+        assertEquals(expected.get(0).getRestString(), actual.get(0).getRestString());
+        assertEquals(expected.get(1).getRestString(), actual.get(1).getRestString());
+        assertEquals(expected.get(2).getRestString(), actual.get(2).getRestString());
+        assertEquals(expected.get(3).getRestString(), actual.get(3).getRestString());
+        assertEquals(expected.get(4).getRestString(), actual.get(4).getRestString());
+    }
     private Possibility CreatePossibility(String LocationPart, String MidPart, String RestString)
     {
         Possibility pos = new Possibility();
