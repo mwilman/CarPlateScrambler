@@ -1,12 +1,12 @@
 package carplatescrambler.PlateBuilder;
 
-import carplatescrambler.Dao.FileDao;
-import carplatescrambler.Dao.IFileDao;
+import carplatescrambler.Dao.Kuerzelliste;
 import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateExtractor.Extractor;
 import carplatescrambler.Models.Possibility;
 import java.util.ArrayList;
 import java.util.List;
+import carplatescrambler.Dao.IKuerzelliste;
 
 public class PlateBuilder {
 
@@ -79,7 +79,7 @@ public class PlateBuilder {
     private boolean ValidateLocation(String LocationPart)
     {
         List<String> FileContent;
-        IFileDao File = new FileDao();
+        IKuerzelliste File = new Kuerzelliste();
         
         FileContent = File.getFileContent();
         

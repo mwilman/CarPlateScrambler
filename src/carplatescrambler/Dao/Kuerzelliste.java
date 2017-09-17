@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class FileDao implements IFileDao {
+public class Kuerzelliste implements IKuerzelliste {
     @Override
     public List<String> getFileContent()
     {
@@ -24,7 +24,7 @@ public class FileDao implements IFileDao {
 
             return Lines;
         } catch (IOException ex) {
-            Logger.getLogger(FileDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kuerzelliste.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
