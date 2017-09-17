@@ -20,8 +20,17 @@ public class PlateBuilder {
     {
         Extractor Extractor = new Extractor(ScrabbleString);
         List<Possibility> Possibilities = Extractor.Extract();
-        List<PlateSequence> PlateSequences = new ArrayList<>();
         
+        List<PlateSequence> PlateSequences = BuildPlateSequencesWithPossibilities(Possibilities);
+ 
+        return PlateSequences;
+    }
+    
+    
+    private List<PlateSequence> BuildPlateSequencesWithPossibilities(List<Possibility> Possibilities)
+    {
+        List<PlateSequence> PlateSequences = new ArrayList<>();
+        Extractor Extractor = new Extractor(ScrabbleString);
         
         for(int i=0; i<Possibilities.size(); i++)
         {
@@ -35,12 +44,30 @@ public class PlateBuilder {
                     PlateSequences.add(PlateSequence);
                 } else if(Possibilities.get(i).getRestString().length() > 1)
                 {
-                    //TODO
+                    //TODO Der Lesbarkeithalber, sollte das hier in Methoden aufgeteilt werden?
+                    PlateSequence PlateSequence = new PlateSequence();
+                    PlateSequence.addToPlateSequence(BuildPlate(Possibilities.get(i)));
+                    
+                    PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString());
+                    List<PlateSequence> Extracted = PlateBuilder.Scrabble();
+                    if(Extracted.size() > 1)
+                    {
+                        PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
+                        
+                        for(int j=0; j < Extracted.size(); j++)
+                        {
+                            PlateSequence = new PlateSequence();
+                            PlateSequence.addToPlateSequence(BuildPlate(Possibilities.get(i)));
+                            PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
+                            PlateSequences.add(PlateSequence);
+                        }
+                    } else {
+                        PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
+                        PlateSequences.add(PlateSequence);
+                    }  
                 }
             }
         }
-        
-        
         return PlateSequences;
     }
     
@@ -56,10 +83,6 @@ public class PlateBuilder {
         
         FileContent = File.getFileContent();
         
-        if(FileContent.contains(LocationPart))
-        {
-            return true;
-        }
-        return false;
+        return FileContent.contains(LocationPart);
     }
 }

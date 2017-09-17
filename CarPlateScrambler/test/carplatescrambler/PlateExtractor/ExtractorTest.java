@@ -13,7 +13,19 @@ import static org.junit.Assert.*;
 public class ExtractorTest {
     private Extractor Extractor;
     
-
+    @Test
+    public void TestExtractorSetPartialString()
+    {
+        String expected = "TEST";
+        String actual;
+        
+        Extractor = new Extractor("BIBER");
+        Extractor.setPartialString(expected);
+        
+        actual = Extractor.getPartialString();
+        
+        assertEquals(expected, actual);
+    }
     @Test(expected = IllegalArgumentException.class)
     public void TestExtractorCheckPartialStringContainsDigitsCheck()
     {

@@ -8,11 +8,20 @@ import java.util.List;
 
 public class Extractor {
 
-    private final String PartialString;
+    private String PartialString;
 
     public Extractor(String PartialString) {
         this.PartialString = PartialString;
     }
+    
+    public void setPartialString(String PartialString)
+    {
+        this.PartialString = PartialString;
+    }
+    public String getPartialString() {
+        return PartialString;
+    }
+    
     public List<Possibility> Extract()
     {
         if(!Check())
@@ -55,4 +64,6 @@ public class Extractor {
         
         return possibility;
     }
+
+   
 }
