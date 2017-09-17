@@ -11,7 +11,7 @@ public class PlateBuilderTest {
     
     
     @Test
-    public void PlateBuilderScrabbleTwoCharString_ReturnsPlate() {
+    public void TestPlateBuilderScrabbleTwoCharString_ReturnsPlate() {
         String ScrabbleString = "BI";
         String expected = "B - I 123";
         List<PlateSequence> actual;
@@ -24,7 +24,7 @@ public class PlateBuilderTest {
         
     }
     @Test
-    public void PlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
+    public void TestPlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
     {
         String ScrabbleString = "TI";
         List<PlateSequence> actual;
@@ -36,7 +36,7 @@ public class PlateBuilderTest {
         assertTrue(actual.isEmpty());
     }
     @Test
-    public void PlateBulderScrabbleValidThreeCharString_ListCotainsTwoPlates()
+    public void TestPlateBulderScrabbleValidThreeCharString_ListCotainsTwoPlates()
     {
         String ScrabbleString = "BIB";
         int expected = 2;
@@ -48,7 +48,7 @@ public class PlateBuilderTest {
         assertEquals(expected, actual.size());
     }
     @Test
-    public void PlateBuilderScrabbleValidThreeCharString_ReturnsPlates()
+    public void TestPlateBuilderScrabbleValidThreeCharString_ReturnsPlates()
     {
         String ScrabbleString = "BIB";
         List <PlateSequence> expected = new ArrayList<>();
@@ -66,7 +66,7 @@ public class PlateBuilderTest {
         
     }
     @Test
-    public void PlateBuilderScrabbleValidFourCharString_ReturnsPlates()
+    public void TestPlateBuilderScrabbleValidFourCharString_ReturnsPlates()
     {
         String ScrabbleString = "BIBE";
         List <PlateSequence> expected = new ArrayList<>();
@@ -88,7 +88,7 @@ public class PlateBuilderTest {
         
     }
     @Test
-    public void PlateBuilderScrabbleValidBIBERString_ReturnsPlates()
+    public void TestPlateBuilderScrabbleValidBIBERString_ReturnsPlates()
     {
         String ScrabbleString = "BIBER";
         List <PlateSequence> expected = new ArrayList<>();
