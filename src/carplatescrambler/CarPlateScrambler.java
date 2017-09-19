@@ -22,9 +22,10 @@ public class CarPlateScrambler {
         System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
 
         PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
-        List<PlateSequence> Scrabble = plateBuilder.scrabble();
+        List<PlateSequence> scrabble = plateBuilder.scrabble();
+        System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size());
 
-        for (PlateSequence plateSequence : Scrabble) {
+        for (PlateSequence plateSequence : scrabble) {
             System.out.println(plateSequence.getPlateSequence());
         }
     }
