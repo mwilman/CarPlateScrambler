@@ -11,92 +11,92 @@ import static org.junit.Assert.*;
 
 
 public class ExtractorTest {
-    private Extractor Extractor;
+    private Extractor extractor;
     
     @Test
-    public void TestExtractorSetPartialString()
+    public void testExtractorSetPartialString()
     {
         String expected = "TEST";
         String actual;
         
-        Extractor = new Extractor("BIBER");
-        Extractor.setPartialString(expected);
+        extractor = new Extractor("BIBER");
+        extractor.setPartialString(expected);
         
-        actual = Extractor.getPartialString();
+        actual = extractor.getPartialString();
         
         assertEquals(expected, actual);
     }
     @Test(expected = IllegalArgumentException.class)
-    public void TestExtractorCheckPartialStringContainsDigitsCheck()
+    public void testExtractorCheckPartialStringContainsDigitsCheck()
     {
-        Extractor = new Extractor("123");
-        Extractor.Extract();
+        extractor = new Extractor("123");
+        extractor.extract();
     }
     @Test(expected = IllegalArgumentException.class)
-    public void TestExtractorCheckPartialStringContainsOneChar()
+    public void testExtractorCheckPartialStringContainsOneChar()
     {
-        Extractor = new Extractor("a");
-        Extractor.Extract();
+        extractor = new Extractor("a");
+        extractor.extract();
     }
     @Test(expected = IllegalArgumentException.class)
-    public void TestExtractorCheckPartialStringContainsÄCheck()
+    public void testExtractorCheckPartialStringContainsÄCheck()
     {
-        Extractor = new Extractor("häh?");
-        Extractor.Extract();
+        extractor = new Extractor("häh?");
+        extractor.extract();
 
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void TestExtractorCheckPartialStringLengthIsOverFiveDigits()
+    public void testExtractorCheckPartialStringLengthIsOverFiveDigits()
     {
-        Extractor = new Extractor("IOASDIOASJDOIJASIODAOFHIOASDFHIOAHSFDIOHAIOFSDAIOFH");
-        Extractor.Extract();
+        extractor = new Extractor("IOASDIOASJDOIJASIODAOFHIOASDFHIOAHSFDIOHAIOFSDAIOFH");
+        extractor.extract();
 
     }
     @Test
-    public void TestExtractorExtractBIBER_ReturnsListNotNull()
+    public void testExtractorExtractBIBER_ReturnsListNotNull()
     {
         List<Possibility> actual;
-        Extractor = new Extractor("BIBER");
+        extractor = new Extractor("BIBER");
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertNotNull(actual);
     }
     
     
     @Test
-    public void TestExtractorExtractLocationBI_ReturnsListLocation()
+    public void testExtractorExtractLocationBI_ReturnsListLocation()
     {
         String expected = "B";
         String StringToExtract = "BI";
         
         List<Possibility> actual;
         
-        Extractor = new Extractor(StringToExtract);
+        extractor = new Extractor(StringToExtract);
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertEquals(expected, actual.get(0).getLocationPart());
         
     }
     @Test
-    public void TestExtractorExtractMidPartBI_ReturnsListLocation()
+    public void testExtractorExtractMidPartBI_ReturnsListLocation()
     {
         String expected = "I";
         String StringToExtract = "BI";
         
         List<Possibility> actual;
         
-        Extractor = new Extractor(StringToExtract);
+        extractor = new Extractor(StringToExtract);
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertEquals(expected, actual.get(0).getMidPart());
         
     }
     @Test
-    public void TestExtractorExtractRestStringBI_ReturnsListRestStringEmpty()
+    public void testExtractorExtractRestStringBI_ReturnsListRestStringEmpty()
     {
         String expected = "";
         String StringToExtract = "BI";
@@ -104,29 +104,29 @@ public class ExtractorTest {
         List<Possibility> actual;
         
 
-        Extractor = new Extractor(StringToExtract);
+        extractor = new Extractor(StringToExtract);
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertEquals(expected, actual.get(0).getRestString());
         
     }
     @Test
-    public void TestExtractorExtractAllBIB_ReturnsList()
+    public void testExtractorExtractAllBIB_ReturnsList()
     {
         List<Possibility> expected = new ArrayList<>();
         String StringToExtract = "BIB";
         
         
-        expected.add(CreatePossibility("BI","B", ""));
-        expected.add(CreatePossibility("B","IB", ""));
-        expected.add(CreatePossibility("B","I", "B"));
+        expected.add(createPossibility("BI","B", ""));
+        expected.add(createPossibility("B","IB", ""));
+        expected.add(createPossibility("B","I", "B"));
         
         List<Possibility> actual;
 
-        Extractor = new Extractor(StringToExtract);
+        extractor = new Extractor(StringToExtract);
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertEquals(expected.get(0).getLocationPart(), actual.get(0).getLocationPart());
         assertEquals(expected.get(1).getLocationPart(), actual.get(1).getLocationPart());
@@ -142,22 +142,22 @@ public class ExtractorTest {
         
     }
     @Test
-    public void TestExtractorExtractAllBIBER_ReturnsList()
+    public void testExtractorExtractAllBIBER_ReturnsList()
     {
         List<Possibility> expected = new ArrayList<>();
         String StringToExtract = "BIBER";
         
-        expected.add(CreatePossibility("BIB","ER", ""));
-        expected.add(CreatePossibility("BI","BE", "R"));
-        expected.add(CreatePossibility("BI","B", "ER"));
-        expected.add(CreatePossibility("B","IB", "ER"));
-        expected.add(CreatePossibility("B","I", "BER"));
+        expected.add(createPossibility("BIB","ER", ""));
+        expected.add(createPossibility("BI","BE", "R"));
+        expected.add(createPossibility("BI","B", "ER"));
+        expected.add(createPossibility("B","IB", "ER"));
+        expected.add(createPossibility("B","I", "BER"));
         
         List<Possibility> actual;
 
-        Extractor = new Extractor(StringToExtract);
+        extractor = new Extractor(StringToExtract);
         
-        actual = Extractor.Extract();
+        actual = extractor.extract();
         
         assertEquals(expected.get(0).getLocationPart(), actual.get(0).getLocationPart());
         assertEquals(expected.get(1).getLocationPart(), actual.get(1).getLocationPart());
@@ -179,7 +179,7 @@ public class ExtractorTest {
     }
     
     
-    private Possibility CreatePossibility(String LocationPart, String MidPart, String RestString)
+    private Possibility createPossibility(String LocationPart, String MidPart, String RestString)
     {
         Possibility pos = new Possibility();
         pos.setLocationPart(LocationPart);

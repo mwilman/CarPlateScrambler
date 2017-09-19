@@ -22,40 +22,40 @@ public class Extractor {
         return PartialString;
     }
     
-    public List<Possibility> Extract()
+    public List<Possibility> extract()
     {
-        if(!Check())
+        if(!check())
         {
             throw new IllegalArgumentException("Der Teilstring ist ungültig.");
         }
         List<Possibility> ReturnList = new ArrayList<>();
         if(PartialString.length() >= 4)
         {
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 3),PartialString.substring(3),""));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 2),PartialString.substring(2,4),PartialString.substring(4)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 2),PartialString.substring(2,3),PartialString.substring(3)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 3),PartialString.substring(3),""));
+            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,4),PartialString.substring(4)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),PartialString.substring(3)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
 
         } else if (PartialString.length() == 3)
         {
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 2),PartialString.substring(2,3),""));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
-            ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),""));
+            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
+            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
         } else if (PartialString.length() == 2)
         {
-           ReturnList.add(CreatePossibility(PartialString.substring(0, 1),PartialString.substring(1),""));
+           ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1),""));
         }
         return ReturnList;
     }
     
     
-    private boolean Check() {
+    private boolean check() {
         return !(PartialString.length() > 5)&& !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*") && !PartialString.contains("ä");
     }
     
     
-    private Possibility CreatePossibility(String LocationPart, String MidPart, String RestString)
+    private Possibility createPossibility(String LocationPart, String MidPart, String RestString)
     {
         Possibility possibility = new Possibility();
         possibility.setLocationPart(LocationPart);

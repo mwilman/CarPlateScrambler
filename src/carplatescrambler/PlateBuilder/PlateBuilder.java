@@ -10,24 +10,24 @@ import carplatescrambler.Dao.IKuerzelliste;
 
 public class PlateBuilder {
 
-    private String ScrabbleString;
+    private final String ScrabbleString;
     
     public PlateBuilder(String ScrabbleString) {
         this.ScrabbleString = ScrabbleString;
     }
     
-    public List<PlateSequence> Scrabble()
+    public List<PlateSequence> scrabble()
     {
         Extractor Extractor = new Extractor(ScrabbleString);
-        List<Possibility> Possibilities = Extractor.Extract();
+        List<Possibility> Possibilities = Extractor.extract();
         
-        List<PlateSequence> PlateSequences = BuildPlateSequencesWithPossibilities(Possibilities);
+        List<PlateSequence> PlateSequences = buildPlateSequencesWithPossibilities(Possibilities);
  
         return PlateSequences;
     }
     
     
-    private List<PlateSequence> BuildPlateSequencesWithPossibilities(List<Possibility> Possibilities)
+    private List<PlateSequence> buildPlateSequencesWithPossibilities(List<Possibility> Possibilities)
     {
         List<PlateSequence> PlateSequences = new ArrayList<>();
         Extractor Extractor = new Extractor(ScrabbleString);
@@ -35,21 +35,21 @@ public class PlateBuilder {
         for(int i=0; i<Possibilities.size(); i++)
         {
             
-            if(ValidateLocation(Possibilities.get(i).getLocationPart()))
+            if(validateLocation(Possibilities.get(i).getLocationPart()))
             {
                 if( Possibilities.get(i).getRestString().length() == 0)
                 {
                     PlateSequence PlateSequence = new PlateSequence();
-                    PlateSequence.addToPlateSequence(BuildPlate(Possibilities.get(i)));
+                    PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                     PlateSequences.add(PlateSequence);
                 } else if(Possibilities.get(i).getRestString().length() > 1)
                 {
                     //TODO Der Lesbarkeithalber, sollte das hier in Methoden aufgeteilt werden?
                     PlateSequence PlateSequence = new PlateSequence();
-                    PlateSequence.addToPlateSequence(BuildPlate(Possibilities.get(i)));
+                    PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                     
                     PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString());
-                    List<PlateSequence> Extracted = PlateBuilder.Scrabble();
+                    List<PlateSequence> Extracted = PlateBuilder.scrabble();
                     if(Extracted.size() > 1)
                     {
                         PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
@@ -57,7 +57,7 @@ public class PlateBuilder {
                         for(int j=0; j < Extracted.size(); j++)
                         {
                             PlateSequence = new PlateSequence();
-                            PlateSequence.addToPlateSequence(BuildPlate(Possibilities.get(i)));
+                            PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                             PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
                             PlateSequences.add(PlateSequence);
                         }
@@ -71,12 +71,12 @@ public class PlateBuilder {
         return PlateSequences;
     }
     
-    private String BuildPlate(Possibility Pos)
+    private String buildPlate(Possibility Pos)
     {
         return Pos.getLocationPart() + " - " + Pos.getMidPart() + " 123";
     }
     
-    private boolean ValidateLocation(String LocationPart)
+    private boolean validateLocation(String LocationPart)
     {
         List<String> FileContent;
         IKuerzelliste File = new Kuerzelliste();

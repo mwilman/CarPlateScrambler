@@ -11,76 +11,76 @@ public class PlateBuilderTest {
     
     
     @Test
-    public void TestPlateBuilderScrabbleTwoCharString_ReturnsPlate() {
+    public void testPlateBuilderScrabbleTwoCharString_ReturnsPlate() {
         String ScrabbleString = "BI";
         String expected = "B - I 123";
         List<PlateSequence> actual;
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
         
-        actual = PlateBuilder.Scrabble();
+        actual = plateBuilder.scrabble();
         
         assertEquals(expected, actual.get(0).getPlateAt(0));
         
     }
     @Test
-    public void TestPlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
+    public void testPlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
     {
         String ScrabbleString = "TI";
         List<PlateSequence> actual;
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
         
-        actual = PlateBuilder.Scrabble();
+        actual = plateBuilder.scrabble();
         
         assertTrue(actual.isEmpty());
     }
     @Test
-    public void TestPlateBulderScrabbleValidThreeCharString_ListCotainsTwoPlates()
+    public void testPlateBulderScrabbleValidThreeCharString_ListCotainsTwoPlates()
     {
         String ScrabbleString = "BIB";
         int expected = 2;
         List <PlateSequence> actual;
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
-        actual = PlateBuilder.Scrabble();
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        actual = plateBuilder.scrabble();
         
         assertEquals(expected, actual.size());
     }
     @Test
-    public void TestPlateBuilderScrabbleValidThreeCharString_ReturnsPlates()
+    public void testPlateBuilderScrabbleValidThreeCharString_ReturnsPlates()
     {
         String ScrabbleString = "BIB";
         List <PlateSequence> expected = new ArrayList<>();
         List <PlateSequence> actual;
         
         
-        expected.add(CreatePlateSequence("BI - B 123"));
-        expected.add(CreatePlateSequence("B - IB 123"));
+        expected.add(createPlateSequence("BI - B 123"));
+        expected.add(createPlateSequence("B - IB 123"));
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
-        actual = PlateBuilder.Scrabble();
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        actual = plateBuilder.scrabble();
         
         assertEquals(expected.get(0).getPlateAt(0), actual.get(0).getPlateAt(0));
         assertEquals(expected.get(1).getPlateAt(0), actual.get(1).getPlateAt(0));
         
     }
     @Test
-    public void TestPlateBuilderScrabbleValidFourCharString_ReturnsPlates()
+    public void testPlateBuilderScrabbleValidFourCharString_ReturnsPlates()
     {
         String ScrabbleString = "BIBE";
         List <PlateSequence> expected = new ArrayList<>();
         List <PlateSequence> actual;
         
         
-        expected.add(CreatePlateSequence("BI - BE 123"));
+        expected.add(createPlateSequence("BI - BE 123"));
         
-        PlateSequence Sequence = CreatePlateSequence("B - I 123");
+        PlateSequence Sequence = createPlateSequence("B - I 123");
         Sequence.addToPlateSequence("B - E 123");
         expected.add(Sequence);
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
-        actual = PlateBuilder.Scrabble();
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        actual = plateBuilder.scrabble();
         
         assertEquals(expected.get(0).getPlateAt(0), actual.get(0).getPlateAt(0));
         assertEquals(expected.get(1).getPlateAt(0), actual.get(1).getPlateAt(0));
@@ -88,30 +88,30 @@ public class PlateBuilderTest {
         
     }
     @Test
-    public void TestPlateBuilderScrabbleValidBIBERString_ReturnsPlates()
+    public void testPlateBuilderScrabbleValidBIBERString_ReturnsPlates()
     {
         String ScrabbleString = "BIBER";
         List <PlateSequence> expected = new ArrayList<>();
         List <PlateSequence> actual;
         
-        PlateSequence Sequence = CreatePlateSequence("BI - B 123");
-        Sequence.addToPlateSequence("E - R 123");
-        expected.add(Sequence);
+        PlateSequence sequence = createPlateSequence("BI - B 123");
+        sequence.addToPlateSequence("E - R 123");
+        expected.add(sequence);
         
-        PlateSequence SecondSequence = CreatePlateSequence("B - IB 123");
-        SecondSequence.addToPlateSequence("E - R 123");
-        expected.add(SecondSequence);
+        PlateSequence secondSequence = createPlateSequence("B - IB 123");
+        secondSequence.addToPlateSequence("E - R 123");
+        expected.add(secondSequence);
         
-        PlateSequence ThirdSequence = CreatePlateSequence("B - I 123");
-        ThirdSequence.addToPlateSequence("BE - R 123");
-        expected.add(ThirdSequence);
+        PlateSequence thirdSequence = createPlateSequence("B - I 123");
+        thirdSequence.addToPlateSequence("BE - R 123");
+        expected.add(thirdSequence);
         
-        PlateSequence FourthSequence = CreatePlateSequence("B - I 123");
-        FourthSequence.addToPlateSequence("B - ER 123");
-        expected.add(FourthSequence);
+        PlateSequence fourthSequence = createPlateSequence("B - I 123");
+        fourthSequence.addToPlateSequence("B - ER 123");
+        expected.add(fourthSequence);
         
-        PlateBuilder PlateBuilder = new PlateBuilder(ScrabbleString);
-        actual = PlateBuilder.Scrabble();
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        actual = plateBuilder.scrabble();
         
         assertEquals(expected.get(0).getPlateAt(0), actual.get(0).getPlateAt(0));
         assertEquals(expected.get(0).getPlateAt(1), actual.get(0).getPlateAt(1));
@@ -123,10 +123,10 @@ public class PlateBuilderTest {
         assertEquals(expected.get(3).getPlateAt(1), actual.get(3).getPlateAt(1));
     }
    
-    private PlateSequence CreatePlateSequence(String Plate)
+    private PlateSequence createPlateSequence(String Plate)
     {
-        PlateSequence PlateSequence = new PlateSequence();
-        PlateSequence.addToPlateSequence(Plate);
-        return PlateSequence;
+        PlateSequence plateSequence = new PlateSequence();
+        plateSequence.addToPlateSequence(Plate);
+        return plateSequence;
     }
 }
