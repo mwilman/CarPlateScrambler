@@ -4,6 +4,7 @@ import carplatescrambler.Dao.Kuerzelliste;
 import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateBuilder.PlateBuilder;
 import java.util.List;
+import java.util.Scanner;
 
 public class CarPlateScrambler {
 
@@ -13,23 +14,13 @@ public class CarPlateScrambler {
     public static void main(String[] args) {
         Kuerzelliste kuerzellisteFile = new Kuerzelliste();
         kuerzelliste = kuerzellisteFile.getFileContent();
-        String kuerzelliste_String = kuerzelliste.toString();
-        String inFrageKommendeKuerzel = "";
 
         //Wort festlegen
-        derzeitigesWort = "BIBER";
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Geben Sie das gewünschte Wort ein: ");
+        derzeitigesWort = reader.nextLine().toUpperCase(); // Scans the next token of the input as an int.
         System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
 
-        //Gibt es ein Kuerzel welches auf die ersten Buchstaben gemappt werden kann (B oder BI)
-        System.out.println("Passende Anfangs-Kuerzel: ");
-
-        for (int i = 1; i < derzeitigesWort.length() - 1; i++) {
-            if (kuerzelliste_String.contains(derzeitigesWort.substring(0, i))) {
-                inFrageKommendeKuerzel += derzeitigesWort.substring(0, i) + "\n";
-            }
-        }
-        System.out.println(inFrageKommendeKuerzel);
-        
         PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
         List<PlateSequence> Scrabble = plateBuilder.scrabble();
 
