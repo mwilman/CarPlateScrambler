@@ -23,18 +23,7 @@ public class PlateBuilderTest {
         assertEquals(expected, actual.get(0).getPlateAt(0));
         
     }
-    @Test
-    public void testPlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
-    {
-        String ScrabbleString = "TI";
-        List<PlateSequence> actual;
-        
-        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
-        
-        actual = plateBuilder.scrabble();
-        
-        assertTrue(actual.isEmpty());
-    }
+    
     @Test
     public void testPlateBulderScrabbleValidThreeCharString_ListCotainsTwoPlates()
     {
@@ -47,6 +36,7 @@ public class PlateBuilderTest {
         
         assertEquals(expected, actual.size());
     }
+    
     @Test
     public void testPlateBuilderScrabbleValidThreeCharString_ReturnsPlates()
     {
@@ -65,6 +55,7 @@ public class PlateBuilderTest {
         assertEquals(expected.get(1).getPlateAt(0), actual.get(1).getPlateAt(0));
         
     }
+    
     @Test
     public void testPlateBuilderScrabbleValidFourCharString_ReturnsPlates()
     {
@@ -87,6 +78,7 @@ public class PlateBuilderTest {
         assertEquals(expected.get(1).getPlateAt(1), actual.get(1).getPlateAt(1));
         
     }
+    
     @Test
     public void testPlateBuilderScrabbleValidBIBERString_ReturnsPlates()
     {
@@ -122,7 +114,63 @@ public class PlateBuilderTest {
         assertEquals(expected.get(3).getPlateAt(0), actual.get(3).getPlateAt(0));
         assertEquals(expected.get(3).getPlateAt(1), actual.get(3).getPlateAt(1));
     }
-   
+    
+    @Test
+    public void testPlateBuilderScrabbleInvalidTwoCharString_ReturnsEmptyList()
+    {
+        String ScrabbleString = "TI";
+        List<PlateSequence> actual;
+        
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        
+        actual = plateBuilder.scrabble();
+        
+        assertTrue(actual.isEmpty());
+    }
+    
+    @Test
+    public void testPlateBuilderScrabbleInvalidThreeCharString_ReturnsEmptyList()
+    {
+        String ScrabbleString = "TIM";
+        List<PlateSequence> actual;
+        
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        
+        actual = plateBuilder.scrabble();
+        
+        assertTrue(actual.isEmpty());
+    }
+    
+    @Test
+    public void testPlateBuilderScrabbleInvalidFourCharString_ReturnsEmptyList()
+    {
+        String ScrabbleString = "TIMO";
+        List<PlateSequence> actual;
+        
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        
+        actual = plateBuilder.scrabble();
+        
+        assertTrue(actual.isEmpty());
+    }
+    
+    @Test
+    public void testPlateBuilderScrabbleStringAUTO_ReturnsList()
+    {
+        String ScrabbleString = "AUTO";
+        List<PlateSequence> expected = new ArrayList();
+        List<PlateSequence> actual;
+        
+        PlateSequence sequence = createPlateSequence("AU - TO 123");
+        expected.add(sequence);
+        
+        PlateBuilder plateBuilder = new PlateBuilder(ScrabbleString);
+        
+        actual = plateBuilder.scrabble();
+        
+        assertEquals(expected.get(0).getPlateAt(0), actual.get(0).getPlateAt(0));
+    }
+
     private PlateSequence createPlateSequence(String Plate)
     {
         PlateSequence plateSequence = new PlateSequence();

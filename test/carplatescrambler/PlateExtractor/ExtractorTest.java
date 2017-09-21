@@ -3,9 +3,6 @@ package carplatescrambler.PlateExtractor;
 import carplatescrambler.Models.Possibility;
 import java.util.ArrayList;
 import java.util.List;
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,18 +23,21 @@ public class ExtractorTest {
         
         assertEquals(expected, actual);
     }
+    
     @Test(expected = IllegalArgumentException.class)
     public void testExtractorCheckPartialStringContainsDigitsCheck()
     {
         extractor = new Extractor("123");
         extractor.extract();
     }
+    
     @Test(expected = IllegalArgumentException.class)
     public void testExtractorCheckPartialStringContainsOneChar()
     {
         extractor = new Extractor("a");
         extractor.extract();
     }
+    
     @Test(expected = IllegalArgumentException.class)
     public void testExtractorCheckPartialStringContainsÄCheck()
     {
@@ -53,6 +53,7 @@ public class ExtractorTest {
         extractor.extract();
 
     }
+    
     @Test
     public void testExtractorExtractBIBER_ReturnsListNotNull()
     {
@@ -63,7 +64,6 @@ public class ExtractorTest {
         
         assertNotNull(actual);
     }
-    
     
     @Test
     public void testExtractorExtractLocationBI_ReturnsListLocation()
@@ -80,6 +80,7 @@ public class ExtractorTest {
         assertEquals(expected, actual.get(0).getLocationPart());
         
     }
+    
     @Test
     public void testExtractorExtractMidPartBI_ReturnsListLocation()
     {
@@ -95,6 +96,7 @@ public class ExtractorTest {
         assertEquals(expected, actual.get(0).getMidPart());
         
     }
+    
     @Test
     public void testExtractorExtractRestStringBI_ReturnsListRestStringEmpty()
     {
@@ -111,6 +113,7 @@ public class ExtractorTest {
         assertEquals(expected, actual.get(0).getRestString());
         
     }
+    
     @Test
     public void testExtractorExtractAllBIB_ReturnsList()
     {
@@ -141,6 +144,7 @@ public class ExtractorTest {
         assertEquals(expected.get(2).getRestString(), actual.get(2).getRestString());
         
     }
+    
     @Test
     public void testExtractorExtractAllBIBER_ReturnsList()
     {
@@ -177,7 +181,6 @@ public class ExtractorTest {
         assertEquals(expected.get(3).getRestString(), actual.get(3).getRestString());
         assertEquals(expected.get(4).getRestString(), actual.get(4).getRestString());
     }
-    
     
     private Possibility createPossibility(String LocationPart, String MidPart, String RestString)
     {

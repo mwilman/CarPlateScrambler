@@ -26,11 +26,10 @@ public class PlateBuilder {
         return PlateSequences;
     }
     
-    
     private List<PlateSequence> buildPlateSequencesWithPossibilities(List<Possibility> Possibilities)
     {
         List<PlateSequence> PlateSequences = new ArrayList<>();
-        Extractor Extractor = new Extractor(ScrabbleString);
+        //Extractor Extractor = new Extractor(ScrabbleString);
         
         for(int i=0; i<Possibilities.size(); i++)
         {
@@ -61,7 +60,7 @@ public class PlateBuilder {
                             PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
                             PlateSequences.add(PlateSequence);
                         }
-                    } else {
+                    } else if(Extracted.size() == 1 && !Extracted.isEmpty()) {
                         PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
                         PlateSequences.add(PlateSequence);
                     }  

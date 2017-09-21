@@ -3,6 +3,7 @@ package carplatescrambler.Models;
 
 
 public class Possibility {
+    
     private String LocationPart;
     private String MidPart;
     private String RestString;
@@ -12,6 +13,7 @@ public class Possibility {
     {
         return LocationPart;
     }
+    
     public void setLocationPart(String LocationPart)
     {
         this.LocationPart = LocationPart;
@@ -21,14 +23,17 @@ public class Possibility {
     {
         return MidPart;
     }
+    
     public void setMidPart(String MidPart)
     {
         this.MidPart = MidPart;
     }
+    
     public String getRestString()
     {
         return this.RestString;
     }
+    
     public void setRestString(String RestString)
     {
         this.RestString = RestString;

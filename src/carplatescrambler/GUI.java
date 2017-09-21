@@ -44,6 +44,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Auto-Kennzeichen-Scrabble");
@@ -110,7 +111,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(b_help)
                 .addGap(4, 4, 4)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -171,10 +172,8 @@ public class GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GUI().setVisible(true);
         });
     }
 
