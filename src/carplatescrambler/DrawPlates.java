@@ -11,14 +11,17 @@ import javax.swing.JFrame;
  *
  * @author Taxim
  */
-public class DrawPlates
-{
-  public static void main( String[] args )
-  {
-    JFrame f = new JFrame();
-    f.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    f.setSize( 700, 200 );
-    f.add( new DrawPanel() );
-    f.setVisible( true );
-  }
+public class DrawPlates {
+
+    static String derzeitigesWortGUI = "FEHLER";
+
+    public static void main(String... args) {
+        derzeitigesWortGUI = args[0];
+        System.out.println(derzeitigesWortGUI);
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(700, 200);
+        f.add(new DrawPanel());
+        f.setVisible(true);
+    }
 }

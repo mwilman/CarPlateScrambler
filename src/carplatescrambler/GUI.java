@@ -40,6 +40,8 @@ public class GUI extends javax.swing.JFrame {
         ta_output = new javax.swing.JTextArea();
         b_search = new javax.swing.JButton();
         b_help = new javax.swing.JButton();
+        b_generate = new javax.swing.JButton();
+        p_draw = new javax.swing.JPanel();
 
         jLabel1.setText("jLabel1");
 
@@ -51,6 +53,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel3.setText("Suchwort");
 
+        tf_searchword.setText("biber");
         tf_searchword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_searchwordActionPerformed(evt);
@@ -75,28 +78,51 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        b_generate.setText("Generate");
+        b_generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_generateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout p_drawLayout = new javax.swing.GroupLayout(p_draw);
+        p_draw.setLayout(p_drawLayout);
+        p_drawLayout.setHorizontalGroup(
+            p_drawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        p_drawLayout.setVerticalGroup(
+            p_drawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 141, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGap(172, 172, 172)
+                        .addComponent(b_help)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_generate)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(p_draw, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_searchword)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(b_search))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tf_searchword)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b_search))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(b_help)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,9 +135,13 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(tf_searchword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_search))
                 .addGap(18, 18, 18)
-                .addComponent(b_help)
-                .addGap(4, 4, 4)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_help)
+                    .addComponent(b_generate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(p_draw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -143,6 +173,10 @@ public class GUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Gib einfach dein Wort oben in die Zeile ein und klicke auf Suchen","Hilfe",JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showConfirmDialog(rootPane, "Hast du kapiert?", "Bestätigung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_b_helpActionPerformed
+
+    private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
+        DrawPlates.main(tf_searchword.getText().toUpperCase());
+    }//GEN-LAST:event_b_generateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,12 +212,14 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_generate;
     private javax.swing.JButton b_help;
     private javax.swing.JButton b_search;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel p_draw;
     private javax.swing.JTextArea ta_output;
     private javax.swing.JTextField tf_searchword;
     // End of variables declaration//GEN-END:variables
