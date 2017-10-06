@@ -15,7 +15,7 @@ public class DrawPlates {
 
     static String derzeitigesWortGUI = "FEHLER";
 
-    public static void main(String... args) {
+    public static void paint(String... args) {
         derzeitigesWortGUI = args[0];
         System.out.println(derzeitigesWortGUI);
         JFrame f = new JFrame();

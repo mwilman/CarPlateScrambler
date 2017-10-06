@@ -33,8 +33,8 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        label_Title = new javax.swing.JLabel();
+        label_searchword = new javax.swing.JLabel();
         tf_searchword = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_output = new javax.swing.JTextArea();
@@ -48,10 +48,10 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Auto-Kennzeichen-Scrabble");
+        label_Title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_Title.setText("Auto-Kennzeichen-Scrabble");
 
-        jLabel3.setText("Suchwort");
+        label_searchword.setText("Suchwort");
 
         tf_searchword.setText("biber");
         tf_searchword.addActionListener(new java.awt.event.ActionListener() {
@@ -114,24 +114,24 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(p_draw, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(label_searchword)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(tf_searchword)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(b_search))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
+                                    .addComponent(label_Title, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(label_Title)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(label_searchword)
                     .addComponent(tf_searchword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_search))
                 .addGap(18, 18, 18)
@@ -175,7 +175,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_b_helpActionPerformed
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
-        DrawPlates.main(tf_searchword.getText().toUpperCase());
+        DrawPlates.paint(tf_searchword.getText().toUpperCase());
     }//GEN-LAST:event_b_generateActionPerformed
 
     /**
@@ -216,9 +216,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton b_help;
     private javax.swing.JButton b_search;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_Title;
+    private javax.swing.JLabel label_searchword;
     private javax.swing.JPanel p_draw;
     private javax.swing.JTextArea ta_output;
     private javax.swing.JTextField tf_searchword;
