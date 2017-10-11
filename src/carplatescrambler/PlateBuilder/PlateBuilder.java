@@ -11,14 +11,26 @@ import carplatescrambler.Dao.IKuerzelliste;
 public class PlateBuilder {
 
     private final String ScrabbleString;
-    
+    private int PositionInString = 0;
+    private Extractor Extractor;
     public PlateBuilder(String ScrabbleString) {
         this.ScrabbleString = ScrabbleString;
     }
     
     public List<PlateSequence> scrabble()
     {
-        Extractor Extractor = new Extractor(ScrabbleString);
+        
+        if(ScrabbleString.substring(PositionInString).length() >= 5)
+        {    
+            Extractor = new Extractor(ScrabbleString.substring(PositionInString, PositionInString+5));
+            PositionInString = 5;
+        } 
+        else 
+        {
+            Extractor = new Extractor(ScrabbleString.substring(PositionInString, ScrabbleString.length()));
+            PositionInString = ScrabbleString.length();
+        }
+        
         List<Possibility> Possibilities = Extractor.extract();
         
         List<PlateSequence> PlateSequences = buildPlateSequencesWithPossibilities(Possibilities);
@@ -29,7 +41,7 @@ public class PlateBuilder {
     private List<PlateSequence> buildPlateSequencesWithPossibilities(List<Possibility> Possibilities)
     {
         List<PlateSequence> PlateSequences = new ArrayList<>();
-        //Extractor Extractor = new Extractor(ScrabbleString);
+        
         
         for(int i=0; i<Possibilities.size(); i++)
         {
@@ -41,29 +53,34 @@ public class PlateBuilder {
                     PlateSequence PlateSequence = new PlateSequence();
                     PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                     PlateSequences.add(PlateSequence);
-                } else if(Possibilities.get(i).getRestString().length() > 1)
+                } else if(Possibilities.get(i).getRestString().length() >= 1)
                 {
                     //TODO Der Lesbarkeithalber, sollte das hier in Methoden aufgeteilt werden?
                     PlateSequence PlateSequence = new PlateSequence();
                     PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                     
-                    PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString());
-                    List<PlateSequence> Extracted = PlateBuilder.scrabble();
-                    if(Extracted.size() > 1)
+                    if(ScrabbleString.substring(PositionInString).length() >= 1)
                     {
-                        PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
                         
-                        for(int j=0; j < Extracted.size(); j++)
+                        
+                        PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString() + ScrabbleString.substring(PositionInString));
+                        List<PlateSequence> Extracted = PlateBuilder.scrabble();
+                        if(Extracted.size() > 1)
                         {
-                            PlateSequence = new PlateSequence();
-                            PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
-                            PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
-                            PlateSequences.add(PlateSequence);
+                            PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
+
+                            for(int j=0; j < Extracted.size(); j++)
+                            {
+                                PlateSequence = new PlateSequence();
+                                PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
+                                PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
+                                PlateSequences.add(PlateSequence);
+                            }
+                        } else if(Extracted.size() == 1 && !Extracted.isEmpty()) {
+                                PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
+                                PlateSequences.add(PlateSequence);
                         }
-                    } else if(Extracted.size() == 1 && !Extracted.isEmpty()) {
-                        PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
-                        PlateSequences.add(PlateSequence);
-                    }  
+                    }
                 }
             }
         }

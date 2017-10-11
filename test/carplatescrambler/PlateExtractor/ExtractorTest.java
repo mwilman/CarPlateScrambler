@@ -38,13 +38,7 @@ public class ExtractorTest {
         extractor.extract();
     }
     
-    @Test(expected = IllegalArgumentException.class)
-    public void testExtractorCheckPartialStringContainsÄCheck()
-    {
-        extractor = new Extractor("häh?");
-        extractor.extract();
-
-    }
+   
     
     @Test(expected = IllegalArgumentException.class)
     public void testExtractorCheckPartialStringLengthIsOverFiveDigits()

@@ -7,7 +7,9 @@ package carplatescrambler;
 
 import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateBuilder.PlateBuilder;
+import java.awt.Container;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,11 +18,13 @@ import javax.swing.JOptionPane;
  */
 public class GUI extends javax.swing.JFrame {
 
+    DrawPanel p1;
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        p1= new DrawPanel();
     }
 
     /**
@@ -41,7 +45,6 @@ public class GUI extends javax.swing.JFrame {
         b_search = new javax.swing.JButton();
         b_help = new javax.swing.JButton();
         b_generate = new javax.swing.JButton();
-        p_draw = new javax.swing.JPanel();
 
         jLabel1.setText("jLabel1");
 
@@ -85,17 +88,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout p_drawLayout = new javax.swing.GroupLayout(p_draw);
-        p_draw.setLayout(p_drawLayout);
-        p_drawLayout.setHorizontalGroup(
-            p_drawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        p_drawLayout.setVerticalGroup(
-            p_drawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 141, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +103,6 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(p_draw, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(label_searchword)
@@ -140,9 +131,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(b_generate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(p_draw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(170, 170, 170))
         );
 
         pack();
@@ -175,7 +164,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_b_helpActionPerformed
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
-        DrawPlates.paint(tf_searchword.getText().toUpperCase());
+        //DrawPlates.paint(tf_searchword.getText().toUpperCase());
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(700, 200);
+        f.add(new DrawPanel());
+        f.setVisible(true);
     }//GEN-LAST:event_b_generateActionPerformed
 
     /**
@@ -219,7 +213,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_Title;
     private javax.swing.JLabel label_searchword;
-    private javax.swing.JPanel p_draw;
     private javax.swing.JTextArea ta_output;
     private javax.swing.JTextField tf_searchword;
     // End of variables declaration//GEN-END:variables

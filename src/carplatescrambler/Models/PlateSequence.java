@@ -16,7 +16,10 @@ public class PlateSequence {
     {
         this.PlateSequence = PlateSequence;
     }
-    
+    public void removeAllPlates()
+    {
+        PlateSequence.clear();
+    }
     public void addToPlateSequence(String Plate)
     {
         PlateSequence.add(Plate);

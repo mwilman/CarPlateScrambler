@@ -51,7 +51,7 @@ public class Extractor {
     
     
     private boolean check() {
-        return !(PartialString.length() > 5)&& !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*") && !PartialString.contains("ä");
+        return !(PartialString.length() > 5)&& !(PartialString.length() == 1) && !PartialString.matches(".*\\d+.*");
     }
     
     
