@@ -138,19 +138,25 @@ public class GUI extends javax.swing.JFrame {
     private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
        String searchword = tf_searchword.getText().toUpperCase();
        tf_searchword.setText(searchword);
-       String output = "";
+       if(searchword.matches("^[öÖäÄüÜa-zA-Z]*$"))
+       {
+            String output = "";
        
-       output+="Wortlänge: " + searchword.length() + "\n";
+            output+="Wortlänge: " + searchword.length() + "\n";
 
-        PlateBuilder plateBuilder = new PlateBuilder(searchword);
-        List<PlateSequence> scrabble = plateBuilder.scrabble();
-        output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
+             PlateBuilder plateBuilder = new PlateBuilder(searchword);
+             List<PlateSequence> scrabble = plateBuilder.scrabble();
+             output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
 
-        for (PlateSequence plateSequence : scrabble) {
-            output+="\n"+plateSequence.getPlateSequence()+"\n";
+             for (PlateSequence plateSequence : scrabble) {
+                 output+="\n"+plateSequence.getPlateSequence()+"\n";
+             }
+
+             ta_output.setText(output);
+       } else {
+           ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
         }
-        
-        ta_output.setText(output);
+       
     }//GEN-LAST:event_b_searchActionPerformed
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed

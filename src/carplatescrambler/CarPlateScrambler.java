@@ -20,15 +20,20 @@ public class CarPlateScrambler {
         System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
         while(!"BEENDEN".equals(derzeitigesWort = reader.nextLine().toUpperCase()))
         {
-            System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
+            if(derzeitigesWort.matches("^[öÖäÄüÜa-zA-Z]*$"))
+            {
+                System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
 
-            PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
-            List<PlateSequence> scrabble = plateBuilder.scrabble();
-            System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
+                PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
+                List<PlateSequence> scrabble = plateBuilder.scrabble();
+                System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
 
-            scrabble.stream().forEach((plateSequence) -> {
-                System.out.println(plateSequence.getPlateSequence()+"\n");
-            });
+                scrabble.stream().forEach((plateSequence) -> {
+                    System.out.println(plateSequence.getPlateSequence()+"\n");
+                });
+            } else {
+                System.out.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
+            }
             System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
         }
         
