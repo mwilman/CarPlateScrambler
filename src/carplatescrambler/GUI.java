@@ -153,6 +153,8 @@ public class GUI extends javax.swing.JFrame {
              }
 
              ta_output.setText(output);
+             ta_output.setSelectionStart(0);
+             ta_output.setSelectionEnd(0);
        } else {
            ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
         }
