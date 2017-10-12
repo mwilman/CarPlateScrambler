@@ -133,33 +133,38 @@ public class GUI extends javax.swing.JFrame {
 
     private void tf_searchwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchwordActionPerformed
         // TODO add your handling code here:
+        ScrabbleSearchWord();
     }//GEN-LAST:event_tf_searchwordActionPerformed
 
     private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
-       String searchword = tf_searchword.getText().toUpperCase();
-       tf_searchword.setText(searchword);
-       if(searchword.matches("^[öÖäÄüÜa-zA-Z]*$"))
-       {
-            String output = "";
-       
-            output+="Wortlänge: " + searchword.length() + "\n";
-
-             PlateBuilder plateBuilder = new PlateBuilder(searchword);
-             List<PlateSequence> scrabble = plateBuilder.scrabble();
-             output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
-
-             for (PlateSequence plateSequence : scrabble) {
-                 output+="\n"+plateSequence.getPlateSequence()+"\n";
-             }
-
-             ta_output.setText(output);
-             ta_output.setSelectionStart(0);
-             ta_output.setSelectionEnd(0);
-       } else {
-           ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
-        }
+        ScrabbleSearchWord();
        
     }//GEN-LAST:event_b_searchActionPerformed
+
+    private void ScrabbleSearchWord() {
+        String searchword = tf_searchword.getText().toUpperCase();
+        tf_searchword.setText(searchword);
+        if(searchword.matches("^[öÖäÄüÜa-zA-Z]*$"))
+        {
+            String output = "";
+            
+            output+="Wortlänge: " + searchword.length() + "\n";
+            
+            PlateBuilder plateBuilder = new PlateBuilder(searchword);
+            List<PlateSequence> scrabble = plateBuilder.scrabble();
+            output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
+            
+            for (PlateSequence plateSequence : scrabble) {
+                output+="\n"+plateSequence.getPlateSequence()+"\n";
+            }
+            
+            ta_output.setText(output);
+            ta_output.setSelectionStart(0);
+            ta_output.setSelectionEnd(0);
+        } else {
+            ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
+        }
+    }
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
         //DrawPlates.paint(tf_searchword.getText().toUpperCase());
