@@ -29,4 +29,9 @@ public class PlateSequence {
     {
         return PlateSequence.get(Position);
     }
+    
+    public int getPlateSize()
+    {
+        return PlateSequence.size();
+    }
 }

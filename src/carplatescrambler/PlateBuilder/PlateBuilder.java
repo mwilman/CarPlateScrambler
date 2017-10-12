@@ -34,7 +34,7 @@ public class PlateBuilder {
         List<Possibility> Possibilities = Extractor.extract();
         
         List<PlateSequence> PlateSequences = buildPlateSequencesWithPossibilities(Possibilities);
- 
+        Clean(PlateSequences);
         return PlateSequences;
     }
     
@@ -59,28 +59,40 @@ public class PlateBuilder {
                     PlateSequence PlateSequence = new PlateSequence();
                     PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
                     
-                    if(ScrabbleString.substring(PositionInString).length() >= 1)
-                    {
+                   // if(ScrabbleString.substring(PositionInString).length() >= 1)
+                    //{
                         
-                        
-                        PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString() + ScrabbleString.substring(PositionInString));
-                        List<PlateSequence> Extracted = PlateBuilder.scrabble();
-                        if(Extracted.size() > 1)
+                        if(PositionInString >= ScrabbleString.length() && Possibilities.get(i).getRestString().length() == 1)
                         {
-                            PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
-
-                            for(int j=0; j < Extracted.size(); j++)
+                            PlateSequence.removeAllPlates();
+                        } else {
+                            PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString() + ScrabbleString.substring(PositionInString));
+                            List<PlateSequence> Extracted = PlateBuilder.scrabble();
+                            if(Extracted.size() > 1)
                             {
-                                PlateSequence = new PlateSequence();
-                                PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
-                                PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(0));
-                                PlateSequences.add(PlateSequence);
-                            }
-                        } else if(Extracted.size() == 1 && !Extracted.isEmpty()) {
                                 PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
-                                PlateSequences.add(PlateSequence);
+
+                                for(int j=0; j < Extracted.size(); j++)
+                                {
+                                    PlateSequence = new PlateSequence();
+                                    PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
+                                    for(int k=0; k<Extracted.get(j).getPlateSize(); k++)
+                                    {
+                                        PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(k));
+                                        PlateSequences.add(PlateSequence);
+                                    }
+                                    
+                                }
+                            } else if(Extracted.size() == 1 && !Extracted.isEmpty()) {
+                                for(int k=0; k< Extracted.get(0).getPlateSize(); k++)
+                                {
+                                    PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(k));
+                                    PlateSequences.add(PlateSequence);
+                                }
+                                    
+                            }
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -100,5 +112,15 @@ public class PlateBuilder {
         FileContent = File.getFileContent();
         
         return FileContent.contains(LocationPart);
+    }
+
+    private void Clean(List<PlateSequence> PlateSequences) {
+        for(int i=0; i<PlateSequences.size(); i++)
+        {
+            if(i < PlateSequences.size()-1 && PlateSequences.get(i).equals(PlateSequences.get(i+1)))
+            {
+                PlateSequences.remove(i+1);
+            }
+        }
     }
 }

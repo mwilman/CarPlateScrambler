@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package carplatescrambler;
 
 import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateBuilder.PlateBuilder;
-import java.awt.Container;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author mwilman
- */
 public class GUI extends javax.swing.JFrame {
 
     DrawPanel p1;
@@ -43,8 +33,8 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_output = new javax.swing.JTextArea();
         b_search = new javax.swing.JButton();
-        b_help = new javax.swing.JButton();
         b_generate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -54,9 +44,9 @@ public class GUI extends javax.swing.JFrame {
         label_Title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         label_Title.setText("Auto-Kennzeichen-Scrabble");
 
-        label_searchword.setText("Suchwort");
+        label_searchword.setText("Suchwort:");
 
-        tf_searchword.setText("biber");
+        tf_searchword.setText("INFORMATIK");
         tf_searchword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_searchwordActionPerformed(evt);
@@ -74,17 +64,18 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        b_help.setText("Hilfe");
-        b_help.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_helpActionPerformed(evt);
-            }
-        });
-
         b_generate.setText("Generate");
+        b_generate.setEnabled(false);
         b_generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_generateActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Hilfe");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -93,45 +84,48 @@ public class GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(b_help)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_generate)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(label_searchword)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tf_searchword)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b_search))
-                                    .addComponent(label_Title, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))))))
-                .addContainerGap())
+                                .addComponent(tf_searchword))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(b_generate)
+                                .addGap(18, 18, 18)
+                                .addComponent(b_search)))
+                        .addGap(59, 59, 59))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(label_Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(label_Title)
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_searchword)
-                    .addComponent(tf_searchword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_search))
+                    .addComponent(tf_searchword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_help)
-                    .addComponent(b_generate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
+                    .addComponent(b_generate)
+                    .addComponent(b_search)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +137,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
        String searchword = tf_searchword.getText().toUpperCase();
+       tf_searchword.setText(searchword);
        String output = "";
        
        output+="Wortlänge: " + searchword.length() + "\n";
@@ -158,19 +153,18 @@ public class GUI extends javax.swing.JFrame {
         ta_output.setText(output);
     }//GEN-LAST:event_b_searchActionPerformed
 
-    private void b_helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_helpActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Gib einfach dein Wort oben in die Zeile ein und klicke auf Suchen","Hilfe",JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showConfirmDialog(rootPane, "Hast du kapiert?", "Bestätigung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_b_helpActionPerformed
-
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
         //DrawPlates.paint(tf_searchword.getText().toUpperCase());
         JFrame f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(700, 200);
         f.add(new DrawPanel());
         f.setVisible(true);
     }//GEN-LAST:event_b_generateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +201,8 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_generate;
-    private javax.swing.JButton b_help;
     private javax.swing.JButton b_search;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_Title;
