@@ -14,19 +14,23 @@ public class CarPlateScrambler {
     public static void main(String[] args) {
         Kuerzelliste kuerzellisteFile = new Kuerzelliste();
         kuerzelliste = kuerzellisteFile.getFileContent();
+        Scanner reader = new Scanner(System.in); 
 
-        //Wort festlegen
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-        System.out.println("Geben Sie das gewünschte Wort ein: ");
-        derzeitigesWort = reader.nextLine().toUpperCase(); // Scans the next token of the input as an int.
-        System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
+        
+        System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
+        while(!"BEENDEN".equals(derzeitigesWort = reader.nextLine().toUpperCase()))
+        {
+            System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
 
-        PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
-        List<PlateSequence> scrabble = plateBuilder.scrabble();
-        System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size());
+            PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
+            List<PlateSequence> scrabble = plateBuilder.scrabble();
+            System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
 
-        for (PlateSequence plateSequence : scrabble) {
-            System.out.println(plateSequence.getPlateSequence());
+            scrabble.stream().forEach((plateSequence) -> {
+                System.out.println(plateSequence.getPlateSequence()+"\n");
+            });
+            System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
         }
+        
     }
 }
