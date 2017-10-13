@@ -12,27 +12,27 @@ public class PlateBuilder {
 
     private final String ScrabbleString;
     private int PositionInString = 0;
-    private Extractor Extractor;
 
-    List<String> FileContent;
-    IKuerzelliste File = new Kuerzelliste();
+    private final List<String> FileContent;
 
     public PlateBuilder(String ScrabbleString) {
         this.ScrabbleString = ScrabbleString;
-        FileContent = File.getFileContent();
+        IKuerzelliste file = new Kuerzelliste();
+        FileContent = file.getFileContent();
     }
 
     public List<PlateSequence> scrabble() {
 
+        carplatescrambler.PlateExtractor.Extractor extractor;
         if (ScrabbleString.substring(PositionInString).length() >= 5) {
-            Extractor = new Extractor(ScrabbleString.substring(PositionInString, PositionInString + 5));
+            extractor = new Extractor(ScrabbleString.substring(PositionInString, PositionInString + 5));
             PositionInString = 5;
         } else {
-            Extractor = new Extractor(ScrabbleString.substring(PositionInString, ScrabbleString.length()));
+            extractor = new Extractor(ScrabbleString.substring(PositionInString, ScrabbleString.length()));
             PositionInString = ScrabbleString.length();
         }
 
-        List<Possibility> Possibilities = Extractor.extract();
+        List<Possibility> Possibilities = extractor.extract();
 
         List<PlateSequence> PlateSequences = buildPlateSequencesWithPossibilities(Possibilities);
         Clean(PlateSequences);
@@ -42,33 +42,33 @@ public class PlateBuilder {
     private List<PlateSequence> buildPlateSequencesWithPossibilities(List<Possibility> Possibilities) {
         List<PlateSequence> PlateSequences = new ArrayList<>();
 
-        for (int i = 0; i < Possibilities.size(); i++) {
+        for (carplatescrambler.Models.Possibility Possibility : Possibilities) {
 
-            if (validateLocation(Possibilities.get(i).getLocationPart())) {
-                if (Possibilities.get(i).getRestString().length() == 0) {
+            if (validateLocation(Possibility.getLocationPart())) {
+                if (Possibility.getRestString().length() == 0) {
                     PlateSequence PlateSequence = new PlateSequence();
-                    PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
+                    PlateSequence.addToPlateSequence(buildPlate(Possibility));
                     PlateSequences.add(PlateSequence);
-                } else if (Possibilities.get(i).getRestString().length() >= 1) {
+                } else if (Possibility.getRestString().length() >= 1) {
                     //TODO Der Lesbarkeithalber, sollte das hier in Methoden aufgeteilt werden?
                     PlateSequence PlateSequence = new PlateSequence();
-                    PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
+                    PlateSequence.addToPlateSequence(buildPlate(Possibility));
 
                     // if(ScrabbleString.substring(PositionInString).length() >= 1)
                     //{
-                    if (PositionInString >= ScrabbleString.length() && Possibilities.get(i).getRestString().length() == 1) {
+                    if (PositionInString >= ScrabbleString.length() && Possibility.getRestString().length() == 1) {
                         PlateSequence.removeAllPlates();
                     } else {
-                        PlateBuilder PlateBuilder = new PlateBuilder(Possibilities.get(i).getRestString() + ScrabbleString.substring(PositionInString));
+                        PlateBuilder PlateBuilder = new PlateBuilder(Possibility.getRestString() + ScrabbleString.substring(PositionInString));
                         List<PlateSequence> Extracted = PlateBuilder.scrabble();
                         if (Extracted.size() > 1) {
                             PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
 
-                            for (int j = 0; j < Extracted.size(); j++) {
+                            for (carplatescrambler.Models.PlateSequence aExtracted : Extracted) {
                                 PlateSequence = new PlateSequence();
-                                PlateSequence.addToPlateSequence(buildPlate(Possibilities.get(i)));
-                                for (int k = 0; k < Extracted.get(j).getPlateSize(); k++) {
-                                    PlateSequence.addToPlateSequence(Extracted.get(j).getPlateAt(k));
+                                PlateSequence.addToPlateSequence(buildPlate(Possibility));
+                                for (int k = 0; k < aExtracted.getPlateSize(); k++) {
+                                    PlateSequence.addToPlateSequence(aExtracted.getPlateAt(k));
                                     PlateSequences.add(PlateSequence);
                                 }
 

@@ -4,5 +4,5 @@ import java.util.List;
 
 
 public interface IKuerzelliste {
-    public List<String> getFileContent();
+    List<String> getFileContent();
 }

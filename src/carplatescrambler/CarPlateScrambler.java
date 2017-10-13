@@ -6,18 +6,16 @@ import carplatescrambler.PlateBuilder.PlateBuilder;
 import java.util.List;
 import java.util.Scanner;
 
-public class CarPlateScrambler {
-
-    static List<String> kuerzelliste;
-    static String derzeitigesWort;
+class CarPlateScrambler {
 
     public static void main(String[] args) {
         Kuerzelliste kuerzellisteFile = new Kuerzelliste();
-        kuerzelliste = kuerzellisteFile.getFileContent();
+        List<String> kuerzelliste = kuerzellisteFile.getFileContent();
         Scanner reader = new Scanner(System.in); 
 
         
         System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
+        String derzeitigesWort;
         while(!"BEENDEN".equals(derzeitigesWort = reader.nextLine().toUpperCase()))
         {
             if(derzeitigesWort.matches("^[öÖäÄüÜa-zA-Z]*$"))
@@ -28,9 +26,7 @@ public class CarPlateScrambler {
                 List<PlateSequence> scrabble = plateBuilder.scrabble();
                 System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
 
-                scrabble.stream().forEach((plateSequence) -> {
-                    System.out.println(plateSequence.getPlateSequence()+"\n");
-                });
+                scrabble.forEach((plateSequence) -> System.out.println(plateSequence.getPlateSequence()+"\n"));
             } else {
                 System.out.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
             }

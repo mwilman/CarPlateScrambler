@@ -5,17 +5,13 @@ import java.util.List;
 
 public class PlateSequence {
     
-    private List<String> PlateSequence = new ArrayList<>();
+    private final List<String> PlateSequence = new ArrayList<>();
     
     public List<String> getPlateSequence()
     {
         return this.PlateSequence;
     }
-    
-    public void setPlateSequence(List<String> PlateSequence)
-    {
-        this.PlateSequence = PlateSequence;
-    }
+
     public void removeAllPlates()
     {
         PlateSequence.clear();

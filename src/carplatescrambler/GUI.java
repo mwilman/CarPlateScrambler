@@ -3,18 +3,18 @@ package carplatescrambler;
 
 import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateBuilder.PlateBuilder;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JFrame;
 
-public class GUI extends javax.swing.JFrame {
-
-    DrawPanel p1;
+class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    public GUI() {
+    private GUI() {
         initComponents();
-        p1= new DrawPanel();
     }
 
     /**
@@ -26,22 +26,22 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        label_Title = new javax.swing.JLabel();
-        label_searchword = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel label_Title = new javax.swing.JLabel();
+        javax.swing.JLabel label_searchword = new javax.swing.JLabel();
         tf_searchword = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         ta_output = new javax.swing.JTextArea();
-        b_search = new javax.swing.JButton();
-        b_generate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        javax.swing.JButton b_search = new javax.swing.JButton();
+        javax.swing.JButton b_generate = new javax.swing.JButton();
+        javax.swing.JButton jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        label_Title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_Title.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 24)); // NOI18N
         label_Title.setText("Auto-Kennzeichen-Scrabble");
 
         label_searchword.setText("Suchwort:");
@@ -131,6 +131,9 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(ActionEvent evt) {
+    }
+
     private void tf_searchwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchwordActionPerformed
         // TODO add your handling code here:
         ScrabbleSearchWord();
@@ -153,11 +156,13 @@ public class GUI extends javax.swing.JFrame {
             PlateBuilder plateBuilder = new PlateBuilder(searchword);
             List<PlateSequence> scrabble = plateBuilder.scrabble();
             output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
-            
+
+            StringBuilder outputBuilder = new StringBuilder(output);
             for (PlateSequence plateSequence : scrabble) {
-                output+="\n"+plateSequence.getPlateSequence()+"\n";
+                outputBuilder.append("\n").append(plateSequence.getPlateSequence()).append("\n");
             }
-            
+            output = outputBuilder.toString();
+
             ta_output.setText(output);
             ta_output.setSelectionStart(0);
             ta_output.setSelectionEnd(0);
@@ -175,10 +180,6 @@ public class GUI extends javax.swing.JFrame {
         f.setVisible(true);
     }//GEN-LAST:event_b_generateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -195,13 +196,7 @@ public class GUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -212,14 +207,6 @@ public class GUI extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_generate;
-    private javax.swing.JButton b_search;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel label_Title;
-    private javax.swing.JLabel label_searchword;
     private javax.swing.JTextArea ta_output;
     private javax.swing.JTextField tf_searchword;
     // End of variables declaration//GEN-END:variables

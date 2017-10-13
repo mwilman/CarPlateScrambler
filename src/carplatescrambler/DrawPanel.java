@@ -9,11 +9,6 @@ import javax.swing.JPanel;
 
 class DrawPanel extends JPanel {
 
-    int breiteKennzeichen = 150;
-    int hoeheKennzeichen = 30;
-    int zwischenAbstand = 10;
-    int seitenabstand = 10;
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -32,7 +27,11 @@ class DrawPanel extends JPanel {
         }
     }
 
-    public void generatePlate(Graphics g, String print, int kennzeichenColumn, int kennzeichenRow) {
+    private void generatePlate(Graphics g, String print, int kennzeichenColumn, int kennzeichenRow) {
+        int seitenabstand = 10;
+        int zwischenAbstand = 10;
+        int hoeheKennzeichen = 30;
+        int breiteKennzeichen = 150;
         g.drawRect(10 + (seitenabstand * kennzeichenColumn) + (kennzeichenColumn * breiteKennzeichen), zwischenAbstand + (kennzeichenRow * hoeheKennzeichen + kennzeichenRow * 5), breiteKennzeichen, hoeheKennzeichen);
         g.drawString(print, seitenabstand + (seitenabstand * kennzeichenColumn) + 5 + (kennzeichenColumn * breiteKennzeichen), hoeheKennzeichen * (kennzeichenRow + 1) + 5 * (kennzeichenRow + 1));
     }
