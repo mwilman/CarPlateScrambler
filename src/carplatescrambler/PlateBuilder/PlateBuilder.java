@@ -50,18 +50,15 @@ public class PlateBuilder {
                     PlateSequence.addToPlateSequence(buildPlate(Possibility));
                     PlateSequences.add(PlateSequence);
                 } else if (Possibility.getRestString().length() >= 1) {
-                    //TODO Der Lesbarkeithalber, sollte das hier in Methoden aufgeteilt werden?
                     PlateSequence PlateSequence = new PlateSequence();
                     PlateSequence.addToPlateSequence(buildPlate(Possibility));
 
-                    // if(ScrabbleString.substring(PositionInString).length() >= 1)
-                    //{
                     if (PositionInString >= ScrabbleString.length() && Possibility.getRestString().length() == 1) {
                         PlateSequence.removeAllPlates();
                     } else {
                         PlateBuilder PlateBuilder = new PlateBuilder(Possibility.getRestString() + ScrabbleString.substring(PositionInString));
                         List<PlateSequence> Extracted = PlateBuilder.scrabble();
-                        if (Extracted.size() > 1) {
+                        if (Extracted.size() >= 1) {
                             PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(0));
 
                             for (carplatescrambler.Models.PlateSequence aExtracted : Extracted) {
@@ -73,15 +70,8 @@ public class PlateBuilder {
                                 }
 
                             }
-                        } else if (Extracted.size() == 1 && !Extracted.isEmpty()) {
-                            for (int k = 0; k < Extracted.get(0).getPlateSize(); k++) {
-                                PlateSequence.addToPlateSequence(Extracted.get(0).getPlateAt(k));
-                                PlateSequences.add(PlateSequence);
-                            }
-
                         }
                     }
-                    //}
                 }
             }
         }
