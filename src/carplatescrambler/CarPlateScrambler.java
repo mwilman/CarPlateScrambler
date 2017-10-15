@@ -26,7 +26,7 @@ class CarPlateScrambler {
 
                 scrabble.forEach((plateSequence) -> System.out.println(plateSequence.getPlateSequence()+"\n"));
             } else {
-                System.out.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
+                System.err.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
             }
             System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
         }
