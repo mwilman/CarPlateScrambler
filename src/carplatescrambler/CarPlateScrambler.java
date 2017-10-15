@@ -9,8 +9,6 @@ import java.util.Scanner;
 class CarPlateScrambler {
 
     public static void main(String[] args) {
-        Kuerzelliste kuerzellisteFile = new Kuerzelliste();
-        List<String> kuerzelliste = kuerzellisteFile.getFileContent();
         Scanner reader = new Scanner(System.in); 
 
         
