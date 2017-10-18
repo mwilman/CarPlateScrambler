@@ -5,6 +5,8 @@ import carplatescrambler.Models.PlateSequence;
 import carplatescrambler.PlateBuilder.PlateBuilder;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class CarPlateScrambler {
 
@@ -16,7 +18,9 @@ class CarPlateScrambler {
         String derzeitigesWort;
         while(!"BEENDEN".equals(derzeitigesWort = reader.nextLine().toUpperCase()))
         {
-            if(derzeitigesWort.matches("^[öÖäÄüÜa-zA-Z]*$"))
+            Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
+            Matcher m = p.matcher(derzeitigesWort);
+            if(!m.find())
             {
                 System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
 

@@ -7,6 +7,8 @@ import carplatescrambler.PlateBuilder.PlateBuilder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
 class GUI extends javax.swing.JFrame {
@@ -147,25 +149,34 @@ class GUI extends javax.swing.JFrame {
     private void ScrabbleSearchWord() {
         String searchword = tf_searchword.getText().toUpperCase();
         tf_searchword.setText(searchword);
-        if(searchword.matches("^[öÖäÄüÜa-zA-Z]*$"))
+        Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
+        Matcher m = p.matcher(searchword);
+        if(m.find())
         {
             String output = "";
             
             output+="Wortlänge: " + searchword.length() + "\n";
-            
-            PlateBuilder plateBuilder = new PlateBuilder(searchword);
-            List<PlateSequence> scrabble = plateBuilder.scrabble();
-            output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
+            if(searchword.contains("Ä"))
+            {
+                ta_output.setText("Anzahl Kombinationsmöglichkeiten: 0");
+                ta_output.setSelectionStart(0);
+                ta_output.setSelectionEnd(0); 
+            } else {
+                PlateBuilder plateBuilder = new PlateBuilder(searchword);
+                List<PlateSequence> scrabble = plateBuilder.scrabble();
+                output+="Anzahl Kombinationsmöglichkeiten: "+scrabble.size();
 
-            StringBuilder outputBuilder = new StringBuilder(output);
-            for (PlateSequence plateSequence : scrabble) {
-                outputBuilder.append("\n").append(plateSequence.getPlateSequence()).append("\n");
+                StringBuilder outputBuilder = new StringBuilder(output);
+                for (PlateSequence plateSequence : scrabble) {
+                    outputBuilder.append("\n").append(plateSequence.getPlateSequence()).append("\n");
+                }
+                output = outputBuilder.toString();
+
+                ta_output.setText(output);
+                ta_output.setSelectionStart(0);
+                ta_output.setSelectionEnd(0);
             }
-            output = outputBuilder.toString();
-
-            ta_output.setText(output);
-            ta_output.setSelectionStart(0);
-            ta_output.setSelectionEnd(0);
+            
         } else {
             ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
         }
@@ -209,5 +220,5 @@ class GUI extends javax.swing.JFrame {
 
     private javax.swing.JTextArea ta_output;
     private javax.swing.JTextField tf_searchword;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

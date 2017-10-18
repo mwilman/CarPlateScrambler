@@ -31,20 +31,52 @@ public class Extractor {
         List<Possibility> ReturnList = new ArrayList<>();
         if(PartialString.length() >= 4)
         {
-            ReturnList.add(createPossibility(PartialString.substring(0, 3),PartialString.substring(3),""));
-            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,4),PartialString.substring(4)));
-            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),PartialString.substring(3)));
-            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
-            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
+            Possibility pos;
+            if ((pos = createPossibility(PartialString.substring(0, 3),PartialString.substring(3),"")) != null)
+            {
+                ReturnList.add(pos);
+            }
+            if ((pos = createPossibility(PartialString.substring(0, 2),PartialString.substring(2,4),PartialString.substring(4))) != null)
+            {
+                ReturnList.add(pos);
+            }
+            if ((pos = createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),PartialString.substring(3))) != null)
+            {
+                ReturnList.add(pos);
+            }
+            if ((pos = createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3))) != null)
+            {
+                ReturnList.add(pos);
+            }
+            if ((pos = createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2))) != null)
+            {
+                ReturnList.add(pos);
+            }
 
         } else if (PartialString.length() == 3)
         {
-            ReturnList.add(createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),""));
-            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3)));
-            ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2)));
+            Possibility pos;
+            if ((pos = createPossibility(PartialString.substring(0, 2),PartialString.substring(2,3),"")) != null)
+            {
+                ReturnList.add(pos);
+            }
+
+            if ((pos = createPossibility(PartialString.substring(0, 1),PartialString.substring(1,3),PartialString.substring(3))) != null)
+            {
+                ReturnList.add(pos);
+            }
+
+            if ((pos = createPossibility(PartialString.substring(0, 1),PartialString.substring(1,2),PartialString.substring(2))) != null)
+            {
+                ReturnList.add(pos);
+            }
         } else if (PartialString.length() == 2)
         {
-           ReturnList.add(createPossibility(PartialString.substring(0, 1),PartialString.substring(1),""));
+            Possibility pos;
+            if ((pos = createPossibility(PartialString.substring(0, 1),PartialString.substring(1),"")) != null)
+            {
+                ReturnList.add(pos);
+            }
         }
         return ReturnList;
     }
@@ -57,12 +89,16 @@ public class Extractor {
     
     private Possibility createPossibility(String LocationPart, String MidPart, String RestString)
     {
-        Possibility possibility = new Possibility();
-        possibility.setLocationPart(LocationPart);
-        possibility.setMidPart(MidPart);
-        possibility.setRestString(RestString);
-        
-        return possibility;
+        if(MidPart.toUpperCase().contains("Ä") || MidPart.toUpperCase().contains("Ö") || MidPart.toUpperCase().contains("Ü"))
+        {
+            return null;
+        } else {
+            Possibility possibility = new Possibility();
+            possibility.setLocationPart(LocationPart);
+            possibility.setMidPart(MidPart);
+            possibility.setRestString(RestString);
+            return possibility;
+        }
     }
 
    
