@@ -20,15 +20,20 @@ class CarPlateScrambler {
         {
             Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
             Matcher m = p.matcher(derzeitigesWort);
-            if(!m.find())
+            if(m.find())
             {
                 System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
+                if(derzeitigesWort.contains("Ä"))
+                {
+                    System.out.println("Anzahl Kombinationsmöglichkeiten: 0\n");
+                } else {
+                    PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
+                    List<PlateSequence> scrabble = plateBuilder.scrabble();
+                    System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
 
-                PlateBuilder plateBuilder = new PlateBuilder(derzeitigesWort);
-                List<PlateSequence> scrabble = plateBuilder.scrabble();
-                System.out.println("Anzahl Kombinationsmöglichkeiten: "+scrabble.size()+"\n");
-
-                scrabble.forEach((plateSequence) -> System.out.println(plateSequence.getPlateSequence()+"\n"));
+                    scrabble.forEach((plateSequence) -> System.out.println(plateSequence.getPlateSequence()+"\n"));
+                }
+                
             } else {
                 System.err.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
             }
