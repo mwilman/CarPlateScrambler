@@ -20,7 +20,7 @@ class CarPlateScrambler {
         {
             Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
             Matcher m = p.matcher(derzeitigesWort);
-            if(m.find())
+            if(m.find() && !derzeitigesWort.contains(" "))
             {
                 System.out.println("Wortlänge: " + derzeitigesWort.length() + "\n");
                 if(derzeitigesWort.contains("Ä"))
@@ -35,7 +35,7 @@ class CarPlateScrambler {
                 }
                 
             } else {
-                System.err.println("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
+                System.err.println("FEHLER: Bitte keine Sonderzeichen, Leerzeichen, oder Zahlen eingeben!");
             }
             System.out.print("Geben Sie das gewünschte Wort ein (Beenden mit: BEENDEN): ");
         }

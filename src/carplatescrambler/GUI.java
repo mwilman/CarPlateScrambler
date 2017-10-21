@@ -151,14 +151,14 @@ class GUI extends javax.swing.JFrame {
         tf_searchword.setText(searchword);
         Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
         Matcher m = p.matcher(searchword);
-        if(m.find())
+        if(m.find() && !searchword.contains(" "))
         {
             String output = "";
             
             output+="Wortlänge: " + searchword.length() + "\n";
             if(searchword.contains("Ä"))
             {
-                ta_output.setText("Anzahl Kombinationsmöglichkeiten: 0");
+                ta_output.setText(output+"Anzahl Kombinationsmöglichkeiten: 0");
                 ta_output.setSelectionStart(0);
                 ta_output.setSelectionEnd(0); 
             } else {
@@ -178,7 +178,7 @@ class GUI extends javax.swing.JFrame {
             }
             
         } else {
-            ta_output.setText("FEHLER: Bitte keine Sonderzeichen oder Zahlen eingeben!");
+            ta_output.setText("FEHLER: Bitte keine Sonderzeichen, Leerzeichen oder Zahlen eingeben!");
         }
     }
 
