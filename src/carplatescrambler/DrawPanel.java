@@ -13,7 +13,7 @@ class DrawPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         setFont(new Font("Verdana", Font.BOLD, 18));
-        String derzeitigesWort = DrawPlates.derzeitigesWortGUI;
+        String derzeitigesWort = GUI.searchword;
         PlateBuilder builder = new PlateBuilder(derzeitigesWort);
         List<PlateSequence> scrabble = builder.scrabble();
 

@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
 class GUI extends javax.swing.JFrame {
+    static String searchword = "FEHLER";
     /**
      * Creates new form GUI
      */
@@ -67,7 +68,7 @@ class GUI extends javax.swing.JFrame {
         });
 
         b_generate.setText("Generate");
-        b_generate.setEnabled(false);
+        b_generate.setEnabled(true);
         b_generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_generateActionPerformed(evt);
@@ -147,7 +148,8 @@ class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_b_searchActionPerformed
 
     private void ScrabbleSearchWord() {
-        String searchword = tf_searchword.getText().toUpperCase();
+       ;
+        searchword = tf_searchword.getText().toUpperCase();
         tf_searchword.setText(searchword);
         Pattern p = Pattern.compile("[^öÖäÄüÜa-zA-Z]*$");
         Matcher m = p.matcher(searchword);
@@ -184,6 +186,8 @@ class GUI extends javax.swing.JFrame {
 
     private void b_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateActionPerformed
         //DrawPlates.paint(tf_searchword.getText().toUpperCase());
+        searchword = tf_searchword.getText().toUpperCase();
+        tf_searchword.setText(searchword);
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setSize(700, 200);
